@@ -1,0 +1,95 @@
+[project]
+name = "advent-of-code-2025"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "ruff>=0.12.8",
+    "tox>=4.25.0",
+    "tox-uv>=1.13.1",
+]
+typing=[
+    "mypy>=1.4.1",
+]
+
+[tool.uv]
+default-groups = ["dev", "typing"]
+
+[tool.mypy]
+warn_return_any = true
+
+python_version = "3.9"
+
+files = ["src"]
+
+pretty = true
+
+
+[tool.pyright]
+pythonVersion = "3.9"
+include = ["src"]
+typeCheckingMode = "basic"
+
+[tool.ruff]
+line-length = 100
+indent-width = 4
+
+target-version = "py38"
+show-fixes = true
+
+src = ["src"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.ruff.lint]
+select = [
+    "B",  # flake8-bugbear
+    "E",  # pycodestyle error
+    "F",  # pyflakes
+    "I",  # isort
+    "UP",  # pyupgrade
+    "W",  # pycodestyle warning
+]
+ignore = [
+    "UP038",  # keep isinstance tuple
+]
+
+[tool.tox]
+env_list = [
+    "style",
+    "typing",
+]
+
+[tool.tox.env_run_base]
+description = "pytest on latest dependency versions"
+runner = "uv-venv-lock-runner"
+package = "wheel"
+wheel_build_env = ".pkg"
+constrain_package_deps = true
+use_frozen_constraints = true
+dependency_groups = []
+
+commands = []
+
+[tool.tox.env.style]
+description = "run linting and style checks on code"
+dependency_groups = ["dev"]
+skip_install = true
+commands = [["ruff", "check"]]
+
+[tool.tox.env.typing]
+description = "run static type checkers"
+dependency_groups = ["typing"]
+commands = [
+    ["mypy"],
+]
+
+
