@@ -15,7 +15,7 @@ def id_checker(val: int) -> bool:
     sval = str(val)
 
     for i in range(1, len(sval)):
-        if len(set(batched(sval, i))) == 1:
+        if len(set(batched(sval, i, strict=False))) == 1:
             return True
     return False
 
@@ -24,14 +24,7 @@ def main() -> NoReturn:
     with open("inputs/day2.txt") as fin:
         ranges = fin.read().strip().split(sep=",")
 
-    print(
-        sum(
-            filter(
-                id_checker,
-                ids(ranges)
-            )
-        )
-    )
+    print(sum(filter(id_checker, ids(ranges))))
     exit(0)
 
 
