@@ -22,7 +22,7 @@ default-groups = ["dev", "typing"]
 [tool.mypy]
 warn_return_any = true
 
-python_version = "3.9"
+python_version = "3.13"
 
 files = ["src"]
 
@@ -30,7 +30,7 @@ pretty = true
 
 
 [tool.pyright]
-pythonVersion = "3.9"
+pythonVersion = "3.13"
 include = ["src"]
 typeCheckingMode = "basic"
 
@@ -38,7 +38,7 @@ typeCheckingMode = "basic"
 line-length = 100
 indent-width = 4
 
-target-version = "py38"
+target-version = "py313"
 show-fixes = true
 
 src = ["src"]
