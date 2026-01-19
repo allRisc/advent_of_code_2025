@@ -58,9 +58,7 @@ select = [
     "UP",  # pyupgrade
     "W",  # pycodestyle warning
 ]
-ignore = [
-    "UP038",  # keep isinstance tuple
-]
+ignore = []
 
 [tool.tox]
 env_list = [

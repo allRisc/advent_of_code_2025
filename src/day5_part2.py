@@ -1,8 +1,7 @@
 from __future__ import annotations
 
-from collections.abc import Generator, Iterable
 from functools import reduce
-from itertools import chain, takewhile
+from itertools import takewhile
 from typing import NoReturn
 
 
@@ -28,7 +27,7 @@ def main() -> NoReturn:
         takewhile(lambda val: val != "", data)
     ))
 
-    compact_ranges = reduce(compact_range, fresh_ranges, [])
+    compact_ranges: list[tuple[int, int]] = reduce(compact_range, fresh_ranges, [])
 
     fresh_id_count = sum(map(
         lambda r: r[1] - r[0] + 1,

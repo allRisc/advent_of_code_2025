@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import dataclasses
 from itertools import product
-from typing import NamedTuple, NoReturn
+from typing import NoReturn
 
 
-class Position(NamedTuple):
+@dataclasses.dataclass
+class Position:
     col: int
     row: int
 
@@ -55,7 +57,9 @@ def main() -> NoReturn:
 
         nlines: map[map[str]] = map(
             lambda eline: map(
-                lambda echar: echar[1] if not is_accessible(Position(col=echar[0], row=eline[0]), lines) else '.',
+                lambda echar: echar[1] if not is_accessible(
+                                Position(col=echar[0], row=eline[0]), lines
+                              ) else '.',
                 enumerate(eline[1]),
             ),
             enumerate(lines)
